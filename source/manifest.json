@@ -6,12 +6,12 @@
 	"manifest_version": 3,
 	"minimum_chrome_version": "100",
 	"icons": {
-		"16": "images/icon-16.png",
-		"32": "images/icon-32.png",
-		"48": "images/icon-64.png",
-		"128": "images/icon-128.png",
-		"256": "images/icon-256.png",
-		"512": "images/icon-512.png"
+		"16": "icons/icon-16.png",
+		"32": "icons/icon-32.png",
+		"48": "icons/icon-64.png",
+		"128": "icons/icon-128.png",
+		"256": "icons/icon-256.png",
+		"512": "icons/icon-512.png"
 	},
 	"permissions": [
 		"storage"
