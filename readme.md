@@ -4,6 +4,9 @@
 
 ## Features
 
+- Configurable rent portions by line item.
+- Displays payment responsibility on payment page.
+
 ## Getting started
 
 Users should install this extension and configure their pre-negotiated rent rates.
