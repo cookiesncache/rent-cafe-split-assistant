@@ -1,10 +1,12 @@
 # Rent Cafe Split Assistant
 
-### Rent splitter calculator for RentCafe-powered websites.
+### A split rent calculator for RentCafe-powered websites.
 
 ## Features
 
 ## Getting started
+
+Users should install this extension and configure their pre-negotiated rent rates.
 
 ## Credits
 
