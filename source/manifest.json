@@ -13,6 +13,9 @@
 		"256": "icons/icon-256.png",
 		"512": "icons/icon-512.png"
 	},
+	"host_permissions": [
+		"https://*.securecafe.com/"
+	],
 	"permissions": [
 		"activeTab",
 		"scripting",
