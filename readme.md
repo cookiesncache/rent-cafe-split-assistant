@@ -16,4 +16,4 @@ This extension was possible by extensive contributions from these projects:
 
 ## License
 
-
+Developed for use under [GNU GENERAL PUBLIC LICENSE](LICENSE).
