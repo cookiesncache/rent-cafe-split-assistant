@@ -10,6 +10,7 @@
 ## Getting started
 
 Users should install this extension and configure their pre-negotiated rent rates.
+Extension icon should become colored when active.
 
 ## Credits
 
