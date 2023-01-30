@@ -1,7 +1,7 @@
 {
-	"name": "Awesome Extension",
+	"name": "Rent Cafe Split Assistant",
 	"version": "0.0.0",
-	"description": "An awesome new browser extension",
+	"description": "A split rent calculator for RentCafe-powered websites.",
 	"homepage_url": "https://github.com/cookiesncache/rent-cafe-split-assistant",
 	"manifest_version": 3,
 	"minimum_chrome_version": "100",
