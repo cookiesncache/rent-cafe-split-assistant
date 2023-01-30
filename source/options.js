@@ -4,21 +4,30 @@ import './options.css';
 
 import optionsStorage from './options-storage.js';
 
-const rangeInputs = [...document.querySelectorAll('input[type="range"][name^="color"]')];
-const numberInputs = [...document.querySelectorAll('input[type="number"][name^="color"]')];
+const colorRangeInputs = [...document.querySelectorAll('input[type="range"][name^="color"]')];
+const colorNumberInputs = [...document.querySelectorAll('input[type="number"][name^="color"]')];
+const splitNumberInputs = [...document.querySelectorAll('input[type="number"][name^="rate"]')];
 const output = document.querySelector('.color-output');
 
 function updateOutputColor() {
-	output.style.backgroundColor = `rgb(${rangeInputs[0].value}, ${rangeInputs[1].value}, ${rangeInputs[2].value})`;
+	output.style.backgroundColor = `rgb(${colorRangeInputs[0].value}, ${colorRangeInputs[1].value}, ${colorRangeInputs[2].value})`;
 }
 
-function updateInputField(event) {
-	numberInputs[rangeInputs.indexOf(event.currentTarget)].value = event.currentTarget.value;
+function updateColorInputField(event) {
+	colorNumberInputs[colorRangeInputs.indexOf(event.currentTarget)].value = event.currentTarget.value;
 }
 
-for (const input of rangeInputs) {
+function updateSplitInputField(event) {
+	splitNumberInputs[splitNumberInputs.indexOf(event.currentTarget)].value = event.currentTarget.value;
+}
+
+for (const input of colorRangeInputs) {
 	input.addEventListener('input', updateOutputColor);
-	input.addEventListener('input', updateInputField);
+	input.addEventListener('input', updateColorInputField);
+}
+
+for (const input of splitNumberInputs) {
+	input.addEventListener('input', updateSplitInputField);
 }
 
 async function init() {
