@@ -23,6 +23,7 @@
 		"extends": "stylelint-config-xo"
 	},
 	"dependencies": {
+		"@types/chrome": "^0.0.210",
 		"currency.js": "^2.0.4",
 		"jquery": "^3.6.3",
 		"webext-base-css": "^1.4.1",
