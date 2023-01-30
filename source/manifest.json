@@ -14,14 +14,21 @@
 		"512": "icons/icon-512.png"
 	},
 	"permissions": [
-		"activeTab", "scripting", "storage"
+		"activeTab",
+		"scripting",
+		"storage"
 	],
+	"action": {
+		"default_popup": "options.html"
+	},
 	"content_scripts": [
 		{
 			"matches": [
 				"https://*.securecafe.com/residentservices/*/payments.aspx"
 			],
-			"include_globs": ["*#tab_MakePayments"],
+			"include_globs": [
+				"*#tab_MakePayments"
+			],
 			"js": [
 				"content.js"
 			],
@@ -31,10 +38,6 @@
 			"run_at": "document_end"
 		}
 	],
-	"options_ui": {
-		"browser_style": true,
-		"page": "options.html"
-	},
 	"background": {
 		"service_worker": "background.js",
 		"type": "module"
