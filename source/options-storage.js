@@ -6,7 +6,7 @@ export default new OptionsSync({
 		colorGreen: 67,
 		colorBlue: 54,
 		text: 'Set a text!',
-		rateRent: 1
+		rateRent: 0.5
 	},
 	migrations: [
 		OptionsSync.migrations.removeUnused,
