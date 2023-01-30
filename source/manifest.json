@@ -14,7 +14,7 @@
 		"512": "icons/icon-512.png"
 	},
 	"permissions": [
-		"storage"
+		"activeTab", "scripting", "storage"
 	],
 	"content_scripts": [
 		{
