@@ -16,14 +16,12 @@
 	"permissions": [
 		"storage"
 	],
-	"host_permissions": [
-		"https://github.com/*"
-	],
 	"content_scripts": [
 		{
 			"matches": [
-				"https://*.securecafe.com/residentservices/*/payments.aspx#tab_MakePayments"
+				"https://*.securecafe.com/residentservices/*/payments.aspx"
 			],
+			"include_globs": ["*#tab_MakePayments"],
 			"js": [
 				"content.js"
 			],
