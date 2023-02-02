@@ -1,9 +1,6 @@
 import optionsStorage from './options-storage.js';
-import $ from 'jquery';
 import currency from 'currency.js';
-import * as jQuery from "jquery";
-
-const $ = jQuery.default;
+import "./import-jquery";
 
 console.log('🦭 Content script loaded for', chrome.runtime.getManifest().name);
 
