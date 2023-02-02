@@ -4,18 +4,35 @@
 
 <form id="options-form" class="detail-view-container">
 	<h3>Split Settings</h3>
-	<div class="number-inputs">
+	<div>
+		<label class="text-input">
+			<span>Rent Description</span>
+			<input type="text" name="descriptionRent">
+		</label>
+		</br>
 		<label class="number-input">
 			<span>Rent Rate</span>
 			<input type="number" name="rateRent" step="any">
 		</label>
+		</br>
 		<label class="number-input">
 			<span>Other Rate</span>
 			<input type="number" name="rateOther" step="any">
 		</label>
 	</div>
 	<h3>Flat Fee Settings</h3>
-	<div class="number-inputs">
+	<div>
+		<label class="checkbox-input">
+			<span>Enable Parking Fee</span>
+			<input type="checkbox" name="enableParking">
+		</label>
+		</br>
+		</br>
+		<label class="text-input">
+			<span>Parking Description</span>
+			<input type="text" name="descriptionParking">
+		</label>
+		</br>
 		<label class="number-input">
 			<span>Parking Fee</span>
 			<input type="number" name="feeParking" step="0.01">

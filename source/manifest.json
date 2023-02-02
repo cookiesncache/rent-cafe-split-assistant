@@ -27,10 +27,7 @@
 	"content_scripts": [
 		{
 			"matches": [
-				"https://*.securecafe.com/residentservices/*/payments.aspx"
-			],
-			"include_globs": [
-				"*#tab_MakePayments"
+				"https://*.securecafe.com/residentservices/*/paymentonetime.aspx"
 			],
 			"js": [
 				"content.js"
