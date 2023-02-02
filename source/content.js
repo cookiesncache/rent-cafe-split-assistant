@@ -1,6 +1,7 @@
 import optionsStorage from './options-storage.js';
-import * as jQuery from "jquery";
+import $ from 'jquery';
 import currency from 'currency.js';
+import * as jQuery from "jquery";
 
 const $ = jQuery.default;
 
@@ -16,20 +17,22 @@ async function init() {
 	paymentInputs.parent("td").parent("tr")
 		.each(function (index) {
 			let description = $(this).children().eq(descriptionColumnIndex).text();
+			let totalAmount = currency($(this).children().eq(totalAmountColumnIndex).text());
 
 			if (description === options.descriptionParking) {
 				return;
 			} else if (description === options.descriptionRent) {
-				let rentPayment = currency($(this).children().eq(totalAmountColumnIndex).text()).multiply(options.rateRent).toString();
-				$(this).find("input[data-selenium-id^='txtPaymentAmount_']").attr("value", rentPayment);
-				$(this).find("input[data-selenium-id^='txtPaymentAmount_']").focus()
-				$(this).find("input[data-selenium-id^='txtPaymentAmount_']").focusout()
-
+				let rentPayment = totalAmount.multiply(options.rateRent).toString();
+				$(this).find("input[data-selenium-id^='txtPaymentAmount_']")
+					.attr("value", rentPayment)
+					.focus()
+					.focusout();
 			} else {
-				let otherPayment = currency($(this).children().eq(totalAmountColumnIndex).text()).multiply(options.rateOther).toString();
-				$(this).find("input[data-selenium-id^='txtPaymentAmount_']").attr("value", otherPayment);
-				$(this).find("input[data-selenium-id^='txtPaymentAmount_']").focus();
-				$(this).find("input[data-selenium-id^='txtPaymentAmount_']").focusout()
+				let otherPayment = totalAmount.multiply(options.rateOther).toString();
+				$(this).find("input[data-selenium-id^='txtPaymentAmount_']")
+					.attr("value", otherPayment)
+					.focus()
+					.focusout();
 			};
 		});
 }
