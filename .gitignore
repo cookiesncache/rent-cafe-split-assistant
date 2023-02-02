@@ -1,5 +1,5 @@
 node_modules
 distribution
 .parcel-cache
-.pem
-.crx
+distribution.crx
+distribution.pem
