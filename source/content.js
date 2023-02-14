@@ -8,6 +8,10 @@ console.log('🦭 Content script loaded for', chrome.runtime.getManifest().name)
 async function init() {
 	const options = await optionsStorage.getAll();
 
+	let descriptionColumnIndex = $("#UnpaidDiv").find("th:contains(Description)").index();
+	let totalAmountColumnIndex = $("#UnpaidDiv").find("th:contains(Total Amount)").index();
+	let paymentInputs = $("#UnpaidDiv").find("input[data-selenium-id^='txtPaymentAmount_']");
+
 	// Initialize parking fees.
 	const parkingFees = [];
 	const parser = parse({
@@ -28,14 +32,26 @@ async function init() {
 	parser.end();
 
 	if (options.enableParking) {
-		// Set input of all parking inputs to 0.
-		// For each fee in parkingFees, filter() selection to one input of 0 and set input to fee.
-		// Throw a pop up error if parkingFee not found. Maybe already paid.
-	}
+		$("#UnpaidDiv")
+		.find(`"td:contains(${options.descriptionParking})"`)
+		.parent("tr")
+		.find("input[data-selenium-id^='txtPaymentAmount_']")
+		.attr("value", "0.00");
 
-	let descriptionColumnIndex = $("#UnpaidDiv").find("th:contains(Description)").index();
-	let totalAmountColumnIndex = $("#UnpaidDiv").find("th:contains(Total Amount)").index();
-	let paymentInputs = $("#UnpaidDiv").find("input[data-selenium-id^='txtPaymentAmount_']");
+		for (let fee in parkingFees) {
+			$("#UnpaidDiv")
+			.find(`"td:contains(${options.descriptionParking})"`)
+			.parent("tr")
+			.filter(function() {
+				return this.children().eq(totalAmountColumnIndex).text().includes(fee);
+			})
+			.filter(function() {
+				return this.find("input[data-selenium-id^='txtPaymentAmount_']").attr() === "0.00";
+			})
+			.find("input[data-selenium-id^='txtPaymentAmount_']")
+			.attr(fee);
+		}
+	}
 
 	paymentInputs.parent("td").parent("tr")
 		.each(function (index) {
