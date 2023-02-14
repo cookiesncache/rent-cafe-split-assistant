@@ -21,9 +21,17 @@
 		"scripting",
 		"storage"
 	],
-	"action": {
-		"default_popup": "options.html"
-	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://*.securecafe.com/residentservices/*/paymentonetime.aspx"
+			],
+			"js": [
+				"content.js"
+			],
+			"run_at": "document_end"
+		}
+	],
 	"options_ui": {
 		"browser_style": true,
 		"page": "options.html"
