@@ -19,7 +19,7 @@ async function init() {
 	});
 	parser.on('readable', function () {
 		let parkingFee;
-		while ((record - parser.read()) !== null) {
+		while ((record = parser.read()) !== null) {
 			parkingFees.push(parkingFee);
 		}
 	});
