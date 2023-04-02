@@ -19,39 +19,40 @@ async function init() {
 	});
 	parser.on('readable', function () {
 		let parkingFee;
-		while ((record = parser.read()) !== null) {
-			parkingFees.push(parkingFee);
+		while ((parkingFee = parser.read()) !== null) {
+			parkingFees.push(parkingFee.toString());
 		}
 	});
 	// Catch any error
 	parser.on('error', function (err) {
 		console.error(err.message);
 	});
+	parser.on('end', function () {
+		if (options.enableParking) {
+			$("#UnpaidDiv")
+				.find("td:contains(" + options.descriptionParking + ")")
+				.parent("tr")
+				.find("input[data-selenium-id^='txtPaymentAmount_']")
+				.attr("value", "0.00");
+
+			parkingFees.forEach((parkingFee) => {
+				$("#UnpaidDiv")
+					.find("td:contains(" + options.descriptionParking + ")")
+					.parent("tr")
+					.filter(function () {
+						return $(this).find("input[data-selenium-id^='txtPaymentAmount_']").attr() === "0.00";
+					})
+					.filter(function () {
+						return $(this).children().eq(totalAmountColumnIndex).text().includes(fee);
+					})
+					.find("input[data-selenium-id^='txtPaymentAmount_']")
+					.attr(fee);
+			});
+		}
+	});
 	// Write parking fees.
 	parser.write(options.feeParking);
 	parser.end();
-
-	if (options.enableParking) {
-		$("#UnpaidDiv")
-		.find(`"td:contains(${options.descriptionParking})"`)
-		.parent("tr")
-		.find("input[data-selenium-id^='txtPaymentAmount_']")
-		.attr("value", "0.00");
-
-		for (let fee in parkingFees) {
-			$("#UnpaidDiv")
-			.find(`"td:contains(${options.descriptionParking})"`)
-			.parent("tr")
-			.filter(function() {
-				return this.children().eq(totalAmountColumnIndex).text().includes(fee);
-			})
-			.filter(function() {
-				return this.find("input[data-selenium-id^='txtPaymentAmount_']").attr() === "0.00";
-			})
-			.find("input[data-selenium-id^='txtPaymentAmount_']")
-			.attr(fee);
-		}
-	}
 
 	paymentInputs.parent("td").parent("tr")
 		.each(function (index) {
