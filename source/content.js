@@ -28,6 +28,28 @@ async function init() {
 		console.error(err.message);
 	});
 	parser.on('end', function () {
+		paymentInputs.parent("td").parent("tr")
+			.each(function (index) {
+				let description = $(this).children().eq(descriptionColumnIndex).text();
+				let totalAmount = currency($(this).children().eq(totalAmountColumnIndex).text());
+
+				if (description === options.descriptionParking) {
+					return;
+				} else if (description === options.descriptionRent) {
+					let rentPayment = totalAmount.multiply(options.rateRent).toString();
+					$(this).find("input[data-selenium-id^='txtPaymentAmount_']")
+						.attr("value", rentPayment)
+						.trigger("focus")
+						.trigger("focusout");
+				} else {
+					let otherPayment = totalAmount.multiply(options.rateOther).toString();
+					$(this).find("input[data-selenium-id^='txtPaymentAmount_']")
+						.attr("value", otherPayment)
+						.trigger("focus")
+						.trigger("focusout");
+				};
+			});
+
 		if (options.enableParking) {
 			$("#UnpaidDiv")
 				.find("td:contains(" + options.descriptionParking + ")")
@@ -40,41 +62,19 @@ async function init() {
 					.find("td:contains(" + options.descriptionParking + ")")
 					.parent("tr")
 					.filter(function () {
-						return $(this).find("input[data-selenium-id^='txtPaymentAmount_']").attr() === "0.00";
+						return $(this).find("input[data-selenium-id^='txtPaymentAmount_']").attr("value") === "0.00";
 					})
 					.filter(function () {
-						return $(this).children().eq(totalAmountColumnIndex).text().includes(fee);
+						return $(this).children().eq(totalAmountColumnIndex).text().includes(parkingFee);
 					})
 					.find("input[data-selenium-id^='txtPaymentAmount_']")
-					.attr(fee);
+					.attr("value", parkingFee);
 			});
 		}
 	});
 	// Write parking fees.
 	parser.write(options.feeParking);
 	parser.end();
-
-	paymentInputs.parent("td").parent("tr")
-		.each(function (index) {
-			let description = $(this).children().eq(descriptionColumnIndex).text();
-			let totalAmount = currency($(this).children().eq(totalAmountColumnIndex).text());
-
-			if (description === options.descriptionParking) {
-				return;
-			} else if (description === options.descriptionRent) {
-				let rentPayment = totalAmount.multiply(options.rateRent).toString();
-				$(this).find("input[data-selenium-id^='txtPaymentAmount_']")
-					.attr("value", rentPayment)
-					.trigger("focus")
-					.trigger("focusout");
-			} else {
-				let otherPayment = totalAmount.multiply(options.rateOther).toString();
-				$(this).find("input[data-selenium-id^='txtPaymentAmount_']")
-					.attr("value", otherPayment)
-					.trigger("focus")
-					.trigger("focusout");
-			};
-		});
 }
 
 init();
