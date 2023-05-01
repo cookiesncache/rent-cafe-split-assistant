@@ -17,8 +17,6 @@
 		"https://*.securecafe.com/"
 	],
 	"permissions": [
-		"activeTab",
-		"scripting",
 		"storage"
 	],
 	"content_scripts": [

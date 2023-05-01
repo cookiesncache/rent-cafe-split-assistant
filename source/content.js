@@ -33,7 +33,7 @@ async function init() {
 				let description = $(this).children().eq(descriptionColumnIndex).text();
 				let totalAmount = currency($(this).children().eq(totalAmountColumnIndex).text());
 
-				if (description === options.descriptionParking) {
+				if (description.contains(options.descriptionParking)) {
 					return;
 				} else if (description === options.descriptionRent) {
 					let rentPayment = totalAmount.multiply(options.rateRent).toString();
