@@ -33,9 +33,9 @@ async function init() {
 				let description = $(this).children().eq(descriptionColumnIndex).text();
 				let totalAmount = currency($(this).children().eq(totalAmountColumnIndex).text());
 
-				if (description.contains(options.descriptionParking)) {
+				if (description.includes(options.descriptionParking)) {
 					return;
-				} else if (description === options.descriptionRent) {
+				} else if (description.includes(options.descriptionRent)) {
 					let rentPayment = totalAmount.multiply(options.rateRent).toString();
 					$(this).find("input[data-selenium-id^='txtPaymentAmount_']")
 						.attr("value", rentPayment)
