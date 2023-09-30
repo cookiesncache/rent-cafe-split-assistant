@@ -11,10 +11,13 @@
 
 Users should install this extension and configure their pre-negotiated rent rates.
 
+
 The extension will calculate and pre-fill the payment amount boxes when navigating to the one-time-payment page.
+
 
 e.g.
 https://{yourBuilding}.securecafe.com/residentservices/{yourBuilding1}/paymentonetime.aspx
+
 
 Please ensure the sum of your rates equals exactly 1 to prevent over or under payment.
 
