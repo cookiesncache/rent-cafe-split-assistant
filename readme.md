@@ -19,7 +19,10 @@ e.g.
 https://{yourBuilding}.securecafe.com/residentservices/{yourBuilding1}/paymentonetime.aspx
 
 
-Please ensure the sum of your rates equals exactly 1 to prevent over or under payment.
+Please double check the sum of your rates to prevent over or under-payment.
+
+![image](https://github.com/cookiesncache/rent-cafe-split-assistant/assets/27930775/bdab4d9e-52d5-4369-ad0e-db9dca73c23b)
+
 
 ## Credits
 
